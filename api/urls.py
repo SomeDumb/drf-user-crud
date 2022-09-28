@@ -1,9 +1,8 @@
 from django.urls import path, include
 from django.contrib.auth.models import User
-from .views import UserView, UserListView
+from rest_framework import routers
+from .views import UserView
 
-
-urlpatterns = [
-    path(r'users/<int:pk>/', UserView.as_view()),
-    path(r'users/', UserListView.as_view()),
-]
+router = routers.SimpleRouter()
+router.register(r'users', UserView)
+urlpatterns = router.urls
